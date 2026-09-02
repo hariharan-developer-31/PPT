@@ -2996,6 +2996,11 @@ main,
 @media print {
   @page { size: landscape; margin: 0; }
 
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   html,
   body,
   #root {
