@@ -57,6 +57,7 @@ export const reviewData = {
     'Balance multiple projects more efficiently',
     'Improve prioritization between urgent and long-term work',
     'Spend more time on scalability and long-term architecture',
+    'Improve mobile app development skills and technologies',
   ],
   improvementPlan: [
     'Follow a more structured development workflow',
