@@ -52,8 +52,6 @@ export const reviewData = {
     'Brings technology and business requirements together',
   ],
   improvementAreas: [
-    'Improve project planning and estimation',
-    'Improve documentation and technical processes',
     'Balance multiple projects more efficiently',
     'Improve prioritization between urgent and long-term work',
     'Spend more time on scalability and long-term architecture',
@@ -62,10 +60,8 @@ export const reviewData = {
   improvementPlan: [
     'Follow a more structured development workflow',
     'Improve project estimation and prioritization',
-    'Maintain better technical documentation',
     'Build reusable components and systems',
     'Improve testing and deployment processes',
-    'Delegate where possible and focus more on technical direction',
   ],
   futureGoals: [
     'Lead larger technology initiatives',
