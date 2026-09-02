@@ -1,4 +1,4 @@
-import { ArrowUpRight, Award, ChevronLeft, ChevronRight, Crown, LoaderCircle, X } from 'lucide-react'
+import { ArrowUpRight, Award, ChevronLeft, ChevronRight, Crown, FileDown, LoaderCircle, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { reviewData, slidesMeta } from '../data/reviewData'
 import { downloadReviewPpt } from '../utils/downloadPpt'
@@ -8,9 +8,10 @@ type NavigationProps = {
   onSelect: (index: number) => void
   isFullscreen: boolean
   onPresent: () => void
+  onDownloadPdf: () => void
 }
 
-export function TopNavigation({ current, onSelect, isFullscreen, onPresent }: NavigationProps) {
+export function TopNavigation({ current, onSelect, isFullscreen, onPresent, onDownloadPdf }: NavigationProps) {
   const [isExporting, setIsExporting] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -74,6 +75,10 @@ export function TopNavigation({ current, onSelect, isFullscreen, onPresent }: Na
           <button type="button" className="download-button" onClick={() => void downloadPpt()} disabled={isExporting} aria-label="Download editable PowerPoint presentation" aria-busy={isExporting}>
             {isExporting ? <LoaderCircle className="spin" aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
             <span>{isExporting ? 'Building PPT' : 'Download PPT'}</span>
+          </button>
+          <button type="button" className="download-button" onClick={onDownloadPdf} aria-label="Download presentation as PDF">
+            <FileDown aria-hidden="true" />
+            <span>Download PDF</span>
           </button>
           <button type="button" className="present-button" onClick={present} aria-label={isFullscreen ? 'Exit presentation mode' : 'Enter presentation mode'}>
             <Crown aria-hidden="true" />
@@ -152,6 +157,17 @@ export function TopNavigation({ current, onSelect, isFullscreen, onPresent }: Na
           >
             <span>{isExporting ? 'Building PPT' : 'Download PPT'}</span>
             {isExporting ? <LoaderCircle className="spin" aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
+          </button>
+          <button
+            type="button"
+            className="mobile-download-button"
+            onClick={() => {
+              setMenuOpen(false)
+              onDownloadPdf()
+            }}
+          >
+            <span>Download PDF</span>
+            <FileDown aria-hidden="true" />
           </button>
           <button type="button" className="mobile-present-button" onClick={present}>
             <Crown aria-hidden="true" />

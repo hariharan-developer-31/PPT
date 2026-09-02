@@ -2990,3 +2990,45 @@ main,
   .pillar-card { min-height: 220px; }
   .closing-review blockquote { font-size: clamp(2.1rem, 10vw, 3.5rem); }
 }
+
+.print-deck { display: none; }
+
+@media print {
+  @page { size: landscape; margin: 0; }
+
+  html,
+  body,
+  #root {
+    height: auto;
+    overflow: visible;
+  }
+
+  .presentation-shell {
+    height: auto;
+    overflow: visible;
+  }
+
+  .presentation-shell::before,
+  .presentation-shell::after { display: none; }
+
+  .presentation-shell > :not(.print-deck) { display: none !important; }
+
+  .print-deck { display: block !important; }
+
+  .print-slide {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .print-slide:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .print-slide .slide {
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+  }
+}

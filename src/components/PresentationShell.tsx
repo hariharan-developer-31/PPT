@@ -24,6 +24,7 @@ export function PresentationShell() {
   const [direction, setDirection] = useState(1)
   const [controlsVisible, setControlsVisible] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isPrinting, setIsPrinting] = useState(false)
   const currentRef = useRef(initialSlide)
   const wheelLocked = useRef(false)
   const touchStart = useRef<{ x: number; y: number } | null>(null)
@@ -48,6 +49,19 @@ export function PresentationShell() {
       // Fullscreen may be blocked by browser policy; the deck remains fully usable.
     }
   }, [])
+
+  const downloadPdf = useCallback(() => setIsPrinting(true), [])
+
+  useEffect(() => {
+    if (!isPrinting) return
+    const clearPrintMode = () => setIsPrinting(false)
+    const frame = requestAnimationFrame(() => requestAnimationFrame(() => window.print()))
+    window.addEventListener('afterprint', clearPrintMode)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('afterprint', clearPrintMode)
+    }
+  }, [isPrinting])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -139,7 +153,7 @@ export function PresentationShell() {
         <a className="skip-link" href="#presentation-slide">Skip to current slide</a>
         <div className="ambient-grid" aria-hidden="true" />
         <CursorGlow />
-        <TopNavigation current={current} onSelect={goTo} isFullscreen={isFullscreen} onPresent={() => void togglePresentation()} />
+        <TopNavigation current={current} onSelect={goTo} isFullscreen={isFullscreen} onPresent={() => void togglePresentation()} onDownloadPdf={downloadPdf} />
 
         <main id="presentation-slide" tabIndex={-1}>
           <AnimatePresence mode="wait" custom={direction}>
@@ -171,6 +185,15 @@ export function PresentationShell() {
         <div className="sr-only" aria-live="polite">
           Slide {current + 1} of {slides.length}: {slidesMeta[current]}
         </div>
+        {isPrinting && (
+          <div className="print-deck" aria-hidden="true">
+            {slides.map((Slide, index) => (
+              <div className="print-slide" key={index} style={{ '--accent': slideAccents[index] } as CSSProperties}>
+                <Slide />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </MotionConfig>
   )
