@@ -3020,6 +3020,12 @@ main,
 
   .print-deck { display: block !important; }
 
+  .print-deck [style] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
   .print-slide {
     break-after: page;
     page-break-after: always;
