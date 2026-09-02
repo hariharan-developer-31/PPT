@@ -17,6 +17,7 @@ export const reviewData = {
     'Managing and integrating payment gateways and payment applications',
     'Maintaining The Atom website and server infrastructure',
     'Developing websites & softwares without any flaws',
+    'Developing mobile applications and cloud architectures',
     'Overseeing end-to-end technical project delivery',
   ],
   projects: [

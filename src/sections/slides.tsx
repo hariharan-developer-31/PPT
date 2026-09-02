@@ -77,7 +77,7 @@ export function RoleSlide() {
           <motion.p className="role-statement" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.28, duration: 0.55, ease }}>My responsibility is not only to build systems, but to create the technical direction that helps the firm execute <strong>faster, smarter and better.</strong></motion.p>
         </div>
         <motion.div className="role-responsibilities" initial={{ opacity: 0, x: 32 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.7, ease }}>
-          <div className="role-responsibilities-heading"><span><Network aria-hidden="true" /></span><div><small>Current scope</small><strong>Roles &amp; Responsibilities</strong></div></div>
+          <div className="role-responsibilities-heading"><span><Network aria-hidden="true" /></span><div><strong>Roles &amp; Responsibilities</strong></div></div>
           <div className="role-responsibility-list">
             {reviewData.roleResponsibilities.map((responsibility, index) => (
               <motion.article className="role-responsibility" key={responsibility} initial={{ opacity: 0, x: 22 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.22 + index * 0.08, duration: 0.48, ease }}><span>{String(index + 1).padStart(2, '0')}</span><p>{responsibility}</p></motion.article>
