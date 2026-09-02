@@ -92,7 +92,7 @@ export function RoleSlide() {
 export function WorkDoneSlide() {
   return (
     <section className="slide" aria-labelledby="work-title">
-      <ReviewHeader number="03" label="Work done" title={<span id="work-title">Work I turned<br /><em>into real products.</em></span>} description="Three digital initiatives taken from concept through design, development, integration, or implementation." />
+      <ReviewHeader number="03" label="Work done" title={<span id="work-title">Work I turned<br /><em>into real products.</em></span>} />
       <div className="project-story-grid">
         {reviewData.projects.map((project, index) => (
           <motion.article className="project-story-card liquid-glass glass-hover" key={project.name} initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 + index * 0.08, duration: 0.5, ease }}>

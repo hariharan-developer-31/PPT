@@ -103,7 +103,7 @@ export async function downloadReviewPpt() {
   // 03 — Work Done
   {
     const slide = pptx.addSlide()
-    addHeading(slide, 3, 'Work Done', 'Work I turned into real products.', 'Projects taken from concept through design, development, integration, or implementation.')
+    addHeading(slide, 3, 'Work Done', 'Work I turned into real products.')
     reviewData.projects.forEach((project, index) => {
       const x = 0.62 + index * 4.12
       addCard(slide, x, 2.5, 3.82, 3.85)
